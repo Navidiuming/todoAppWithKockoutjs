@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="addTask">
+            <input class="userInputTask" type="text">
+            <button data-bind="click:addTask">add task</button>
+        </div>
+        <div class="todoItem">
+            <p>test task</p>
+            <button>done</button>
+            <button data-bind="click:$root.deletTask"> delet</button>
+            <button>edit</button>
+        </div>
+    </div>
+
+
+
+
+    <script type='text/javascript' src='./Script/knockout-v3.5.1.js'></script>
+    <script src="./Script/main.js"></script>
+</body>
+</html>

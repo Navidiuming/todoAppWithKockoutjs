@@ -1,0 +1,28 @@
+body{
+    display: flex;
+    justify-content: center;
+    vertical-align: bottom;
+    padding-top: 15vh;
+}
+.container{
+    height: 70vh;
+    width: 80vw;
+    background-color:greenyellow;
+}
+
+.container .addTask{
+    display: flex;
+    justify-content: center;
+    height: 12%;
+}
+.container .todoItem{
+    display: flex;
+    width: 100%;
+}
+.container .todoItem button{
+    height: 50px;
+    width: 50px;
+}
+.container .todoItem p{
+    flex-grow: 1;
+}
