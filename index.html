@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do App</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
     <link rel="stylesheet" href="./style/style.css" />
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
       <div class="inputSection">
         <input type="text" data-bind="value : newTaskText">
         <button data-bind="click:addTask">add task</button>
       </div>
-
-      <div class="taskContainer" data-bind="foreach:tasks">
+      
+      <div class="taskContainer" data-bind="foreach: filteredTasks">
         <div class="tasks">
-          <p data-bind="text:taskName , css: {'active' : isActive()}">Task</p>
+          <p data-bind="text:taskName , css: {'active' : isActive()}"></p>
           <div class="taskBtn">
-            <div class="taskBtn">
+            <div class="taskBtn" data-bind="ifnot: isEditing()">
               <button data-bind="click: $parent.done.bind($parent, $data)">Done</button>
-              <button data-bind="click: edit">edit</button>
+              <button data-bind="click: $parent.edit.bind($parent, $data)">edit</button>
               <button data-bind="click: $parent.deletTask.bind($parent, $data)">delet</button>
             </div>
-            <div class="taskEditBox">
-              <input class="edit" type="text" data-bind="css: {'edit' : isHide()}">
+                    <div class="taskEditBox" data-bind="if: isEditing">
+                        <input class="edit" type="text" data-bind="value: editedTaskName">
+                        <div>
+                          <button data-bind="click: $parent.saveEdit.bind($parent, $data)">Save</button>
+                          <button data-bind="click: $parent.cancelEdit.bind($parent, $data)">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
             </div>
-
           </div>
-        </div>
-      </div>
+    </div>
+    <div class="TaskManagerBtns">
+      <p data-bind="click: filterTasks.bind($data,'all'),css: { 'filter-active': $root.selectedFilter() === 'all' }">all</p>
+      <p data-bind="click:filterTasks.bind($data,'active'),css: { 'filter-active': $root.selectedFilter() === 'active' }">active</p>
+      <p data-bind="click:filterTasks.bind($data,'done'),css: { 'filter-active': $root.selectedFilter() === 'done' }">Done</p>
     </div>
     
     <script src="./Script/main.js"></script>
